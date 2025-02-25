@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import styles from "../Styles/prayerStyle";
-import { BoxOne, PrayerBox } from "./Utilities";
+import { BoxOne, PrayerBox } from "../../../mainUtilites/Utilities";
 import { useAuth } from "../../../Context/Provider";
 
 const PrayerSection = () => {

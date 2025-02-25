@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import styles from "../Styles/prayerStyle";
-import stylesToDo from "../Styles/toDoStyle";
+import styles from "../Screens/HomeScreen/Styles/prayerStyle";
+import stylesToDo from "../Screens/HomeScreen/Styles/toDoStyle";
 const BoxOne = ({ text }) => {
   return (
     <View style={styles.boxOne.box}>
@@ -17,7 +17,7 @@ const PrayerBox = ({ name, time }) => {
     </View>
   );
 };
-const ToDoBox = ({ title, describtion }) => {
+const ToDoBox = ({ title, describtion, button, btnText, onPressFun }) => {
   return (
     <View style={stylesToDo.toDoBox.container}>
       <Text style={stylesToDo.toDoBox.title}>{title}</Text>
@@ -28,12 +28,24 @@ const ToDoBox = ({ title, describtion }) => {
         }}
       >
         <Text style={stylesToDo.toDoBox.describtion}>{describtion}</Text>
-        <TouchableOpacity style={stylesToDo.toDoBox.btn.body}>
-          <Text style={stylesToDo.toDoBox.btn.text}>Done</Text>
-        </TouchableOpacity>
+        {button ? (
+          <TouchableOpacity
+            style={stylesToDo.toDoBox.btn.body}
+            onPress={onPressFun}
+          >
+            <Text style={stylesToDo.toDoBox.btn.text}> {btnText}</Text>
+          </TouchableOpacity>
+        ) : null}
       </View>
     </View>
   );
 };
+const NoToDo = () => {
+  return (
+    <View style={stylesToDo.noToDo.container}>
+      <Text style={stylesToDo.noToDo.text}>There is no To Do</Text>
+    </View>
+  );
+};
 
-export { BoxOne, PrayerBox, ToDoBox };
+export { BoxOne, PrayerBox, ToDoBox, NoToDo };

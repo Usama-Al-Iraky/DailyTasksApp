@@ -1,10 +1,28 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { createContext } from "react";
 import moment from "moment";
+import { initialValues, Reducer } from "./Reducer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const context = createContext();
 
 const Provider = ({ children }) => {
+  const [state, dispatch] = useReducer(Reducer, initialValues);
+  const [doneTasks, setDoneTasks] = useState([]);
+  const [toDos, setToDos] = useState([]);
+  const getToDos = async () => {
+    const data = await AsyncStorage.getItem("mainData");
+    if (data) {
+      const mainData = JSON.parse(data);
+      setToDos(mainData.toDos);
+      setDoneTasks(mainData.doneTasks);
+    }
+  };
+  useEffect(() => {
+    getToDos();
+  }, []);
+
   const [timings, setTimings] = useState([]);
   const [date, setDate] = useState({});
   const [sunrise, setSunrise] = useState("");
@@ -27,6 +45,11 @@ const Provider = ({ children }) => {
   };
   useEffect(() => {
     getData();
+    dispatch({
+      type: "GET_SAVED_DATA",
+      toDos: toDos,
+      doneTasks: doneTasks,
+    });
   }, []);
   const prayers = [
     {
@@ -68,6 +91,7 @@ const Provider = ({ children }) => {
       clearInterval(interval);
     };
   }, [date]);
+
   // ///////////////////////////////////////////////////////
   const setupCountdownTimer = () => {
     const timeInMoment = moment();
@@ -135,6 +159,9 @@ const Provider = ({ children }) => {
         timeIn,
         nextPrayerIs,
         timeToNextPrayerIs,
+        dispatch,
+        toDos: state.toDos,
+        doneTasks: state.doneTasks,
       }}
     >
       {children}

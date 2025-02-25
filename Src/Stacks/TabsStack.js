@@ -3,8 +3,9 @@ import HomeScreen from "../Screens/HomeScreen/Home.Screen";
 import ToDoScreen from "../Screens/ToDoScreen/ToDo.Screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/Feather";
-import {colors} from "../mainUtilites/colors";
-const {mbgc, boxBg, fontColor} = colors;
+import { colors } from "../mainUtilites/colors";
+import { AddToDo } from "../Screens/ToDoScreen/components/AddToDo";
+const { mbgc, boxBg, fontColor } = colors;
 const Tab = createBottomTabNavigator();
 
 const TabStack = () => {
@@ -23,8 +24,8 @@ const TabStack = () => {
           tabBarIcon: ({ color }) => (
             <Icon name="home" size={25} color={color} />
           ),
-          tabBarActiveTintColor: boxBg,
-          tabBarInactiveTintColor: fontColor,
+          tabBarActiveTintColor: fontColor,
+          tabBarInactiveTintColor: boxBg,
         }}
       />
       <Tab.Screen
@@ -35,8 +36,8 @@ const TabStack = () => {
           tabBarIcon: ({ color }) => (
             <Icon name="edit-2" size={25} color={color} />
           ),
-          tabBarActiveTintColor: boxBg,
-          tabBarInactiveTintColor: fontColor,
+          tabBarActiveTintColor: fontColor,
+          tabBarInactiveTintColor: boxBg,
         }}
       />
     </Tab.Navigator>

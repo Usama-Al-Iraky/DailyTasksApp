@@ -42,12 +42,22 @@ const stylesToDo = StyleSheet.create({
       color: "#38317f",
     },
     btn: {
-      body: { backgroundColor: "white", padding: 5, borderRadius: 10 },
-      text: { color: colors.sc  },
+      body: {
+        backgroundColor: "white",
+        padding: 5,
+        borderRadius: 10,
+      },
+      text: {
+        color: colors.sc,
+      },
     },
   },
   noToDo: {
-    container: { flex: 1, justifyContent: "center", alignItems: "center" },
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
     text: {
       fontSize: 30,
       fontWeight: "bold",

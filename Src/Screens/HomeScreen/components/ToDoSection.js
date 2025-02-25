@@ -1,29 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import styles from "../Styles/toDoStyle";
-import { ToDoBox } from "./Utilities";
-import NoToDo from "./NoToDo";
+import { ToDoBox } from "../../../mainUtilites/Utilities";
+import { NoToDo } from "../../../mainUtilites/Utilities";
+import { useAuth } from "../../../Context/Provider";
 
 const ToDoSection = () => {
-  const test = [1,2,3,4,5,6,7,8,9];
+  const { dispatch, toDos } = useAuth();
 
+  const handelMoveToDoneTasks = (id) => {
+    dispatch({
+      type: "ADD_TO_DONE_TASKS",
+      id: id,
+    });
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.sectionTitle}>What is To Do ?</Text>
-      <View style={{height:'440', marginTop:20}}>
-        {
-          test.length? <FlatList
-          style={{ width: "117%", marginLeft: -29 }}
-          data={test}
-          renderItem={({ item }) => (
-            <ToDoBox
-              title={`Title ${item}`}
-              describtion={`Discribtion for task ${item} to do`}
-            />
-          )}
-          showsVerticalScrollIndicator={false}
-        />: <NoToDo/>
-        }
+      <View style={{ height: "440", marginTop: 20 }}>
+        {toDos.length ? (
+          <FlatList
+            style={{ width: "117%", marginLeft: -29 }}
+            data={toDos}
+            renderItem={({ item }) => (
+              <ToDoBox
+                title={item.title}
+                describtion={item.description}
+                button
+                btnText="Done"
+                onPressFun={() => {
+                  handelMoveToDoneTasks(item.id);
+                }}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        ) : (
+          <NoToDo />
+        )}
       </View>
     </View>
   );
