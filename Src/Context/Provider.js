@@ -54,12 +54,12 @@ const Provider = ({ children }) => {
   const prayers = [
     {
       id: "1",
-      name: "الفجر",
+      name: "صلاة الفجر",
       time: timings.Fajr,
     },
     {
       id: "2",
-      name: "الضهر",
+      name: "صلاة الضهر",
       time: timings.Dhuhr,
     },
     {
