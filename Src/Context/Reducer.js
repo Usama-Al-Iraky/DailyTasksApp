@@ -21,6 +21,8 @@ export const Reducer = (state = initialValues, action) => {
       };
       AsyncStorage.setItem("mainData", JSON.stringify(newState));
       return newState;
+    case "ADD":      
+      return state;
     case "ADD_TO_DONE_TASKS":
       const todos = state.toDos;
       let updatedToDos = [...todos];
