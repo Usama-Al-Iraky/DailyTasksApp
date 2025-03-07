@@ -28,6 +28,8 @@ export const Reducer = (state = initialValues, action) => {
       };
   
       return newState;
+    case "ADD":      
+      return state;
     case "ADD_TO_DONE_TASKS":
       const todos = state.toDos;
       let updatedToDos = [...todos];
