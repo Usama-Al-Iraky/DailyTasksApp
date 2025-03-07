@@ -36,6 +36,7 @@ export const Reducer = (state = initialValues, action) => {
         doneTasks: newDoneTasks,
       };
       AsyncStorage.setItem("mainData", JSON.stringify(newState));
+      // test comment
       return newState;
   }
 };
